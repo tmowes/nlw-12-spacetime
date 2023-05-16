@@ -1,0 +1,33 @@
+{
+  "name": "server",
+  "version": "0.1.0",
+  "description": "Aplicação de recordação de memórias, onde o usuário poderá adicionar à uma timeline textos, fotos e vídeos de acontecimentos marcantes da sua vida, organizados por mês e ano.",
+  "keywords": [],
+  "license": "MIT",
+  "main": "index.js",
+  "author": "Julio Cesar Mowes <t-mowes@hotmail.com>",
+  "scripts": {
+    "dev": "tsx watch src/shared/infra/http/server.ts",
+    "test": "vitest run --dir src/modules",
+    "test:w": "vitest --dir src/modules",
+    "lint": "eslint src --ext .ts --fix"
+  },
+  "dependencies": {
+    "@fastify/cors": "^8.2.1",
+    "@prisma/client": "^4.14.0",
+    "dayjs": "^1.11.7",
+    "dotenv": "^16.0.3",
+    "fastify": "^4.17.0",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@piktew/eslint-config-node": "^1.0.0",
+    "@types/node": "^20.1.5",
+    "eslint": "^8.40.0",
+    "prisma": "^4.14.0",
+    "tsx": "^3.12.7",
+    "typescript": "^5.0.4",
+    "vite-tsconfig-paths": "^4.2.0",
+    "vitest": "^0.31.0"
+  }
+}
