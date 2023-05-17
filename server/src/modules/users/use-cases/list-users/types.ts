@@ -1,8 +1,6 @@
-import { User } from "@prisma/client"
+import { User } from '@prisma/client'
 
-export type ListUsersUseCaseRequest = {
-
-}
+export type ListUsersUseCaseRequest = {}
 
 export type ListUsersUseCaseResponse = {
   users: User[]

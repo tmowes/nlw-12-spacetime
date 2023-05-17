@@ -1,3 +1,4 @@
+/* eslint-disable  */
 import 'dotenv/config'
 import { z } from 'zod'
 
