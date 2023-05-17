@@ -13,7 +13,22 @@ export class PrismaMemoriesRepository implements MemoriesRepository {
     return prisma.memory.findMany({ orderBy: { createdAt: 'asc' } })
   }
 
-  async create(data: Prisma.MemoryUncheckedCreateInput): Promise<void> {
-    await prisma.memory.create({ data })
+  async create(data: Prisma.MemoryUncheckedCreateInput): Promise<Memory> {
+    return prisma.memory.create({ data })
+  }
+
+  async update(id: string, data: Prisma.MemoryUncheckedUpdateInput): Promise<Memory> {
+    return prisma.memory.update({
+      where: { id },
+      data: {
+        content: data.content,
+        coverUrl: data.coverUrl,
+        isPublic: data.isPublic,
+      },
+    })
+  }
+
+  async delete(id: string): Promise<void> {
+    await prisma.memory.delete({ where: { id } })
   }
 }

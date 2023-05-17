@@ -1,10 +1,16 @@
-import { makeListMemoriesUseCase } from '@modules/memories/factories/make-list-memories'
 import { FastifyReply, FastifyRequest } from 'fastify'
+import { makeUpdateMemoryUseCase } from '@modules/memories/factories/make-update-memory'
 
-export async function listMemories(request: FastifyRequest, reply: FastifyReply) {
-  const listMemoriesUseCase = makeListMemoriesUseCase()
+import { updateMemoryParamsSchema, updateMemoryBodySchema } from './schemas'
 
-  const { memories } = await listMemoriesUseCase.execute({})
+export async function updateMemory(request: FastifyRequest, reply: FastifyReply) {
+  const { id } = updateMemoryParamsSchema.parse(request.params)
 
-  return reply.status(200).send({ memories })
+  const { coverUrl, content, isPublic } = updateMemoryBodySchema.parse(request.body)
+
+  const updateMemoryUseCase = makeUpdateMemoryUseCase()
+
+  await updateMemoryUseCase.execute({ id, updatedMemoryData: { coverUrl, content, isPublic } })
+
+  return reply.status(204).send()
 }

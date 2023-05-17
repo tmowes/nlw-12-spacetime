@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@fastify/cors": "^8.2.1",
-    "@prisma/client": "^4.14.0",
+    "@prisma/client": "^4.14.1",
     "dayjs": "^1.11.7",
     "dotenv": "^16.0.3",
     "fastify": "^4.17.0",
@@ -22,12 +22,12 @@
   },
   "devDependencies": {
     "@piktew/eslint-config-node": "^1.0.0",
-    "@types/node": "^20.1.5",
+    "@types/node": "^20.1.7",
     "eslint": "^8.40.0",
-    "prisma": "^4.14.0",
+    "prisma": "^4.14.1",
     "tsx": "^3.12.7",
     "typescript": "^5.0.4",
     "vite-tsconfig-paths": "^4.2.0",
-    "vitest": "^0.31.0"
+    "vitest": "^0.31.1"
   }
 }

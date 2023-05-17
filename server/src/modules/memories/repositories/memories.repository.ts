@@ -1,7 +1,9 @@
 import { Memory, Prisma } from '@prisma/client'
 
 export interface MemoriesRepository {
-  findById(id: string): Promise<Memory | null>
   list(): Promise<Memory[]>
-  create(data: Prisma.MemoryUncheckedCreateInput): Promise<void>
+  findById(id: string): Promise<Memory | null>
+  create(data: Prisma.MemoryUncheckedCreateInput): Promise<Memory>
+  update(id: string, data: Prisma.MemoryUncheckedUpdateInput): Promise<Memory>
+  delete(id: string): Promise<void>
 }

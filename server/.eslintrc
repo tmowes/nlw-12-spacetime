@@ -4,6 +4,10 @@
   ],
   "rules": {
     "no-underscore-dangle": "off",
-    "@typescript-eslint/ban-types": "off"
+    "@typescript-eslint/ban-types": "off",
+    "sonarjs/no-duplicate-string": [
+      "error",
+      5
+    ]
   }
 }

@@ -1,10 +1,14 @@
-import { makeListMemoriesUseCase } from '@modules/memories/factories/make-list-memories'
+import { makeDeleteMemoryUseCase } from '@modules/memories/factories/make-delete-memory'
 import { FastifyReply, FastifyRequest } from 'fastify'
 
-export async function listMemories(request: FastifyRequest, reply: FastifyReply) {
-  const listMemoriesUseCase = makeListMemoriesUseCase()
+import { deleteMemoryParamsSchema } from './schemas'
 
-  const { memories } = await listMemoriesUseCase.execute({})
+export async function deleteMemory(request: FastifyRequest, reply: FastifyReply) {
+  const { id } = deleteMemoryParamsSchema.parse(request.params)
 
-  return reply.status(200).send({ memories })
+  const deleteMealUseCase = makeDeleteMemoryUseCase()
+
+  await deleteMealUseCase.execute({ id, userId: '1' })
+
+  return reply.status(204).send()
 }

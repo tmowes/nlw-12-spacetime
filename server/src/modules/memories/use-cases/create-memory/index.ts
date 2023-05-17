@@ -7,11 +7,13 @@ export class CreateMemoryUseCase {
 
   async execute(request: CreateMemoryUseCaseRequest): Promise<CreateMemoryUseCaseResponse> {
     const { content, coverUrl, isPublic } = request
-    await this.memoriesRepository.create({
+    const memory = await this.memoriesRepository.create({
       content,
       coverUrl,
       isPublic,
       userId: '1',
     })
+
+    return { memory }
   }
 }

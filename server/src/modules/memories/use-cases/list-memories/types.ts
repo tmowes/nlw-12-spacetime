@@ -1,9 +1,9 @@
-export type ListMemoriesUseCaseRequest = {}
-
 export type ListMemoriesUseCaseResponse = {
-  memories: {
-    id: string
-    coverUrl: string
-    excerpt: string
-  }[]
+  memories: ListMemoriesDTO[]
+}
+
+export type ListMemoriesDTO = {
+  id: string
+  coverUrl: string
+  excerpt: string
 }
