@@ -6,12 +6,12 @@ export class CreateMemoryUseCase {
   constructor(private memoriesRepository: MemoriesRepository) {}
 
   async execute(request: CreateMemoryUseCaseRequest): Promise<CreateMemoryUseCaseResponse> {
-    const { content, coverUrl, isPublic } = request
+    const { content, coverUrl, isPublic, userId } = request
     const memory = await this.memoriesRepository.create({
       content,
       coverUrl,
       isPublic,
-      userId: '1',
+      userId,
     })
 
     return { memory }

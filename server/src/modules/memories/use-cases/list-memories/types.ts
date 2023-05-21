@@ -1,3 +1,7 @@
+export type ListMemoriesUseCaseRequest = {
+  userId: string
+}
+
 export type ListMemoriesUseCaseResponse = {
   memories: ListMemoriesDTO[]
 }

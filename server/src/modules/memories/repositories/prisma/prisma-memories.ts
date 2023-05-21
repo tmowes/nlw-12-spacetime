@@ -9,8 +9,8 @@ export class PrismaMemoriesRepository implements MemoriesRepository {
     return prisma.memory.findUnique({ where: { id } })
   }
 
-  async list(): Promise<Memory[]> {
-    return prisma.memory.findMany({ orderBy: { createdAt: 'asc' } })
+  async list(userId: string): Promise<Memory[]> {
+    return prisma.memory.findMany({ where: { userId }, orderBy: { createdAt: 'asc' } })
   }
 
   async create(data: Prisma.MemoryUncheckedCreateInput): Promise<Memory> {

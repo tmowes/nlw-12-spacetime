@@ -10,7 +10,10 @@ export async function updateMemory(request: FastifyRequest, reply: FastifyReply)
 
   const updateMemoryUseCase = makeUpdateMemoryUseCase()
 
-  await updateMemoryUseCase.execute({ id, updatedMemoryData: { coverUrl, content, isPublic } })
+  await updateMemoryUseCase.execute({
+    id,
+    updatedMemoryData: { coverUrl, content, isPublic, userId: request.user.sub },
+  })
 
   return reply.status(204).send()
 }

@@ -8,7 +8,7 @@ export async function deleteMemory(request: FastifyRequest, reply: FastifyReply)
 
   const deleteMealUseCase = makeDeleteMemoryUseCase()
 
-  await deleteMealUseCase.execute({ id, userId: '1' })
+  await deleteMealUseCase.execute({ id, userId: request.user.sub })
 
   return reply.status(204).send()
 }

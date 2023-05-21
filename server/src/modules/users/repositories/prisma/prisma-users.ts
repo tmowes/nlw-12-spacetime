@@ -1,4 +1,4 @@
-import { User } from '@prisma/client'
+import { Prisma, User } from '@prisma/client'
 
 import { prisma } from '@shared/libs/prisma'
 
@@ -9,7 +9,19 @@ export class PrismaUsersRepository implements UsersRepository {
     return prisma.user.findUnique({ where: { id } })
   }
 
-  async list(): Promise<User[]> {
-    return prisma.user.findMany() ?? []
+  async findByGithubId(githubId: number): Promise<User | null> {
+    return prisma.user.findUnique({ where: { githubId } })
+  }
+
+  async register(data: Prisma.UserUncheckedCreateInput): Promise<User> {
+    const { githubId, login, name, avatarUrl } = data
+
+    let user = await this.findByGithubId(githubId)
+
+    if (!user) {
+      user = await prisma.user.create({ data: { githubId, login, name, avatarUrl } })
+    }
+
+    return user
   }
 }

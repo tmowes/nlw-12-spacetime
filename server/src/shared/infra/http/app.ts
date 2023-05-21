@@ -1,15 +1,27 @@
 import fastify from 'fastify'
 import cors from '@fastify/cors'
+import jwt from '@fastify/jwt'
+import fastifyStatic from '@fastify/static'
 import { ZodError } from 'zod'
 import { env } from '@configs/env'
+import { staticConfig } from '@configs/static'
+import { authJwt } from '@configs/auth'
+import { corsConfig } from '@configs/cors'
+import { contentParser } from '@configs/upload'
 
 import { appRoutes } from './routes'
 
 export const app = fastify()
 
-app.register(cors, { origin: true })
+app.register(cors, corsConfig)
+
+app.register(jwt, authJwt)
+
+app.register(contentParser)
 
 app.register(appRoutes)
+
+app.register(fastifyStatic, staticConfig)
 
 app.setErrorHandler((error, _, reply) => {
   if (error instanceof ZodError) {

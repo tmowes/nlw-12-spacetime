@@ -12,14 +12,14 @@ export class InMemoryMemoriesRepository implements MemoriesRepository {
     return this.items.find((item) => item.id === id) ?? null
   }
 
-  async list(): Promise<Memory[]> {
-    return this.items
+  async list(userId: string): Promise<Memory[]> {
+    return this.items.filter((item) => item.userId === userId)
   }
 
   async create(data: Prisma.MemoryUncheckedCreateInput): Promise<Memory> {
     const memory = {
       id: randomUUID(),
-      userId: '1',
+      userId: data.userId,
       content: data.content,
       coverUrl: data.coverUrl,
       isPublic: data.isPublic ?? false,
